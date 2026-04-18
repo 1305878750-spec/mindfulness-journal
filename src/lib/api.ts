@@ -1,4 +1,5 @@
-const API_BASE = '/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+const API_BASE = `${API_URL}/api`;
 
 export interface Reflection {
   id: string;
