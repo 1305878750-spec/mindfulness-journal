@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ArrowRight, Check, LoaderCircle } from 'lucide-react';
 import { saveReflection } from '../lib/api';
 
 export default function Today({ onSave }: { onSave?: () => void }) {
@@ -30,13 +31,7 @@ export default function Today({ onSave }: { onSave?: () => void }) {
   return (
     <main className="flex-grow flex flex-col px-6 pt-24 pb-32 max-w-2xl mx-auto w-full">
       <section className="relative mb-16">
-        <div className="w-full h-64 overflow-hidden rounded-xl border border-white/15">
-          <img 
-            className="w-full h-full object-cover opacity-80 grayscale" 
-            alt="Morning sunlight" 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsudXnBpoxZLYVghlr7qgZ6v81ADtyuWcV2r1B9BltVjfj5OOB3W5NDp4uSARx4hzvZgcyKS5bkiyXZEfTzQO3zqnE0Q_1psAEnLNrkw4tRVAXTdrneUR5jrF4cacAqPfxgKBCWJml-OD5pvpUilFZd6S7zDLdaIdIK1O9F0DporKD5ddqfbqaEKxYhyvlxV1VNVsKaGB_aRkf1rPuliNtG7MQ721ewHedGYo5-SqkJ_gSBvXed2xm8zcNYDkNHVlUKWPXSdQtMxQ"
-          />
-        </div>
+        <div className="ritual-scene w-full h-64 rounded-xl border border-white/15" aria-label="Morning sunlight" />
         <div className="mt-8">
           <p className="font-sans text-[11px] uppercase tracking-[3px] text-on-surface-variant mb-4">Morning Ritual</p>
           <h2 className="font-serif font-light italic text-[56px] md:text-[72px] leading-[0.95] tracking-[-2px] text-on-surface">What's one thing<br/>you're looking<br/>forward to today?</h2>
@@ -83,11 +78,13 @@ export default function Today({ onSave }: { onSave?: () => void }) {
           }`}
         >
           {isSaving ? (
-            <span className="material-symbols-outlined text-xl animate-spin" data-icon="progress_activity">progress_activity</span>
+            <LoaderCircle className="h-5 w-5 animate-spin" aria-hidden="true" />
           ) : (
-            <span className="material-symbols-outlined text-xl" data-icon={isSaved ? "check" : "arrow_forward"}>
-              {isSaved ? "check" : "arrow_forward"}
-            </span>
+            isSaved ? (
+              <Check className="h-5 w-5" aria-hidden="true" />
+            ) : (
+              <ArrowRight className="h-5 w-5" aria-hidden="true" />
+            )
           )}
         </button>
       </section>

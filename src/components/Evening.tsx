@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ArrowRight, Check, LoaderCircle, Sparkles } from 'lucide-react';
 import { saveReflection } from '../lib/api';
 
 export default function Evening({ onSave }: { onSave?: () => void }) {
@@ -30,13 +31,7 @@ export default function Evening({ onSave }: { onSave?: () => void }) {
   return (
     <main className="flex-grow flex flex-col px-6 pt-24 pb-32 max-w-2xl mx-auto w-full">
       <section className="relative mb-16">
-        <div className="w-full h-64 overflow-hidden rounded-xl border border-white/15">
-          <img 
-            className="w-full h-full object-cover opacity-80 grayscale" 
-            alt="Evening lake" 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJC56t9gVRk6EKModSR6yMUnoGK-MNFscEFAJsQmRMJQ5-0CsOSxbiykOiP13Jq_fRSv5avaQlTjUjsWR2ytcLWfHsdNn7lD_dgSDqv-s7-fCGcH1wNWSfrvWOaiSUYylaSwvuIzGcEIyQWUvzNNMfd4XBeOM1qcs4W3X35Qv2_R20r7SIvJs5dSITDhLWxE1lXblBuky2RLrF7Tvxy7SgdLFTkVh5iuEGD62w9PjpbaTX2qEaO5D7_daKY6Y5sx51Zdaej-FNyu8"
-          />
-        </div>
+        <div className="ritual-scene ritual-scene-evening w-full h-64 rounded-xl border border-white/15" aria-label="Evening lake" />
         <div className="mt-8">
           <p className="font-sans text-[11px] uppercase tracking-[3px] text-on-surface-variant mb-4">Evening Reflection</p>
           <h2 className="font-serif font-light italic text-[56px] md:text-[72px] leading-[0.95] tracking-[-2px] text-on-surface">What's one thing<br/>you're grateful<br/>for today?</h2>
@@ -55,7 +50,7 @@ export default function Evening({ onSave }: { onSave?: () => void }) {
 
         <aside className="p-6 border border-white/15 rounded-lg flex gap-6 items-center">
           <div className="p-3 border border-white/15 rounded-full">
-            <span className="material-symbols-outlined text-white" data-icon="auto_awesome">auto_awesome</span>
+            <Sparkles className="h-5 w-5 text-white" aria-hidden="true" />
           </div>
           <div className="flex-1">
             <p className="font-serif text-lg italic text-white">"Gratitude turns what we have into enough."</p>
@@ -87,11 +82,13 @@ export default function Evening({ onSave }: { onSave?: () => void }) {
           }`}
         >
           {isSaving ? (
-            <span className="material-symbols-outlined text-xl animate-spin" data-icon="progress_activity">progress_activity</span>
+            <LoaderCircle className="h-5 w-5 animate-spin" aria-hidden="true" />
           ) : (
-            <span className="material-symbols-outlined text-xl" data-icon={isSaved ? "check" : "arrow_forward"}>
-              {isSaved ? "check" : "arrow_forward"}
-            </span>
+            isSaved ? (
+              <Check className="h-5 w-5" aria-hidden="true" />
+            ) : (
+              <ArrowRight className="h-5 w-5" aria-hidden="true" />
+            )
           )}
         </button>
       </section>

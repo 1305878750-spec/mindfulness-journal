@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { LoaderCircle } from 'lucide-react';
 import { getReflections, Reflection } from '../lib/api';
 
 interface DayGroup {
@@ -55,7 +56,7 @@ export default function History() {
 
       {loading && (
         <div className="flex justify-center py-16">
-          <span className="material-symbols-outlined text-3xl text-on-surface-variant animate-spin" data-icon="progress_activity">progress_activity</span>
+          <LoaderCircle className="h-8 w-8 animate-spin text-on-surface-variant" aria-hidden="true" />
         </div>
       )}
 
